@@ -1,0 +1,23 @@
+#ifndef INTERN_HPP
+#define INTERN_HPP
+
+#include <iostream>
+#include <string>
+#include <exception>
+#include "AForm.hpp"
+
+class Aform;
+
+class Intern
+{
+    public :
+
+        Intern() {}
+        Intern(const Intern& other) { (void)other; }
+        Intern& operator=(const Intern& other) { 
+            (void)other; 
+            return (*this); }
+        ~Intern() {}
+        Aform* makeForm(const std::string& name, const std::string& target);
+};
+#endif
