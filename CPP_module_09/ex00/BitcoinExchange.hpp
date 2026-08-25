@@ -12,17 +12,17 @@ class BitCoinExchange
 {
     private :
 
-        std::map<std::string, float> data;
+        std::map<std::string, double> _data;
 
     public :
 
-        BitCoinExchange(const std::string& data_filename);
+        BitCoinExchange();
         BitCoinExchange(const BitCoinExchange& other);
         BitCoinExchange& operator=(const BitCoinExchange& other);
-        ~BitCoinExchange();
+        ~BitCoinExchange() {}
 
-        int copy_data(const std::string& filename);
-
+        bool data_copy(const std::string& filename);
+        bool output(const std::string& fileName);
 };
 
 #endif
