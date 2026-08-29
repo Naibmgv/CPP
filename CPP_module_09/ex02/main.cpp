@@ -1,20 +1,36 @@
 #include "PmergeMe.hpp"
 
-bool parsing(const char **av)
+bool parsing(char **av)
 {
-    for (int i = 0; av[i]; i++) 
+    for (int i = 1; av[i]; i++) 
     {
-        if (!av[i][0]) return false;
+        if (!av[i][0]) 
+		{
+			std::cout << "1";
+			return false;
+		}
         for (int j = 0; av[i][j]; j++) 
-            if (!isdigit(av[i][j])) return false;
+            if (!isdigit(av[i][j]))
+			{
+				std::cout << "2";
+				return false;
+			}
     }
     long tmp = 0;
     char *ptr = NULL;
-    for (int i = 0; av[i]; i++)
+    for (int i = 1; av[i]; i++)
     {
         tmp = strtol(av[i], &ptr, 10);
-        if (*ptr != '\0') return false;
-        if (tmp < 0 || tmp > INT_MAX) return false;
+        if (*ptr != '\0')
+		{
+			std::cout << "3";
+			return false;
+		}
+        if (tmp < 0 || tmp > INT_MAX) 
+		{
+			std::cout << "4";
+			return false;
+		}
     }
     return true;
 }
@@ -29,4 +45,6 @@ int main(int ac, char **av)
         std::cerr << "Error\n";
         return 1;
     }
+	PmergeMe test(av + 1);
+	test.mergeInsertSort(test._vec);
 }

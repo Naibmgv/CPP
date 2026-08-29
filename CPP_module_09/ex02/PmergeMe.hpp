@@ -9,14 +9,18 @@
 # include <cstdlib>
 # include <climits>
 # include <vector>
+#include <utility>
+#include <algorithm>
 
 class PmergeMe
 {
     private :
         int _odd;
-        std::vector<int> _vec;
-    public :
-        PmergeMe(const char **input) {}
+		std::vector<int> _jacobsthal;
+	public :
+        PmergeMe(char **input) {
+			convert_vec(input);
+		}
         PmergeMe(const PmergeMe& other) : _vec(other._vec) {}
         PmergeMe& operator=(const PmergeMe& other){
             if (this != &other) {
@@ -27,10 +31,13 @@ class PmergeMe
         }
         ~PmergeMe() {}
 
-        void convert_vec(const char **input);
-        void sort();
+        std::vector<int> _vec;
+        void convert_vec(char **input);
+        void mergeInsertSort(std::vector<int>& mainChain);
         void oddChecker();
-
+		int jacobsthal(int n);
+		void jacobsthal2(int size);
 };
+
 
 #endif
