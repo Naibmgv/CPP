@@ -86,4 +86,5 @@ void PmergeMe::mergeInsertSort(std::vector<int>& mainChain)
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+	std::cout << odd << std::endl ;
 }
