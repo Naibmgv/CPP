@@ -1,6 +1,7 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
+#include <stdexcept>
 #include <algorithm>
 #include <exception>
 #include <iterator>
@@ -9,21 +10,21 @@
 #include <cstdlib>
 #include <ctime>
 
-class Span 
+class Span
 {
     public:
 
         Span(unsigned int N);
         Span(const Span& other);
         Span& operator=(const Span& other);
-        ~Span();
+        ~Span() {}
 
         void addNumber(int number);
-        void shortestSpan() const;
-        void longestSpan() const;
+        int shortestSpan() const;
+        int longestSpan() const;
 
         template <typename Iterator>
-        void addNumbers(Iterator begin, Iterator end)
+        void addNumber(Iterator begin, Iterator end)
         {
             if ((std::distance(begin, end) + _storage.size()) > _N)
                 throw std::out_of_range("Span is out of capacity");
@@ -47,8 +48,8 @@ class Span
     private:
 
         Span();
-        std::vector<int>    _storage;
         unsigned int _N;
+        std::vector<int>    _storage;
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <string>
 
 template <typename T>
 class Array
@@ -25,7 +26,7 @@ class Array
             }
         }
 
-        Array* operator=(const Array& other)
+        Array& operator=(const Array& other)
         {
             if (this != &other)
             {
@@ -50,14 +51,14 @@ class Array
 
         T& operator[](unsigned int index)
         {
-            if (index >= _size)
+            if (index >= _n)
                 throw std::out_of_range("Index is out of bounds(operator[])");
             return _array[index];
         }
 
         const T& operator[](unsigned int index) const
         {
-            if (index >= _size)
+            if (index >= _n)
                 throw std::out_of_range("Index is out of bounds(operator[])");
             return _array[index];
         }
@@ -67,6 +68,7 @@ class Array
             return _n;
         }
     private :
+
         T* _array;
         unsigned int _n;
 };

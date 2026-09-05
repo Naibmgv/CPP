@@ -8,7 +8,7 @@
 class RPN
 {
     private :
-        const std::string _input;
+        std::string _input;
         std::stack<int> _s;
 
     public :

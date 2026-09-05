@@ -9,35 +9,39 @@
 # include <cstdlib>
 # include <climits>
 # include <vector>
-#include <utility>
-#include <algorithm>
+# include <utility>
+# include <algorithm>
+# include <deque>
+# include <iomanip>
 
 class PmergeMe
 {
-    private :
-        int _odd;
-		std::vector<int> _jacobsthal;
 	public :
         PmergeMe(char **input) {
-			convert_vec(input);
+			convert(input);
 		}
-        PmergeMe(const PmergeMe& other) : _vec(other._vec) {}
+        PmergeMe(const PmergeMe& other) : _vec(other._vec), _deq(other._deq) {}
         PmergeMe& operator=(const PmergeMe& other){
             if (this != &other) {
-                _vec = other._vec;
-                _odd = other._odd;
-            }
+				_vec = other._vec;
+				_deq = other._deq;
+			}
             return *this;
         }
         ~PmergeMe() {}
 
         std::vector<int> _vec;
-        void convert_vec(char **input);
-        void mergeInsertSort(std::vector<int>& mainChain);
-        void oddChecker();
-		int jacobsthal(int n);
-		void jacobsthal2(int size);
-};
+		std::deque<int> _deq;
 
+        template <typename Container>
+		bool oddChecker(const Container& mainChain)
+		{
+			return mainChain.size() % 2;
+		}
+
+		void convert(char **input);
+        void mergeInsertSort(std::vector<int>& mainChain);
+		void mergeInsertSort(std::deque<int>& mainChain);
+};
 
 #endif
